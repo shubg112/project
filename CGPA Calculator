@@ -1,0 +1,137 @@
+#include<iostream>
+using namespace std;
+
+class Theory{
+
+
+	public:
+	int internalMarks,i,endSemesterMarks;
+    float Marks;
+	int internalcreditspoint;
+	int theorycreditspoint;
+	int internalgradePoint;
+	int  theorygradePoint;
+	int credits;
+	
+	public:
+		void InputMarks();
+		void add();
+		void gr_p();
+	
+		
+	};
+class Practical:public Theory
+{
+	public: 
+		void tgr_p();
+};
+class Average:public Practical
+{
+	public:
+		void calc_cgpa();
+		
+};
+	
+void Theory::add()
+{
+	cout<<"enter marks for 4 subjects:"<<endl;
+	cout<<endl;
+}
+void Theory::InputMarks()          //for input.....
+	{
+
+	 
+	 for ( i = 1; i <= 4; ++i)
+	
+	 	 {
+       
+        		cout << "Enter internal marks (out of 50) for subject " << i << ": ";
+       		cin>>internalMarks;
+       		if(internalMarks>50){
+        	    		cout<<"wrong input of marks"<<endl;
+        	     		 return ;
+				}
+       			cout << "Enter end semester marks (out of 100) for subject " << i <<": ";
+       			cin >> endSemesterMarks;
+     			cout<<endl;
+     			
+        			if(endSemesterMarks>100){
+        			cout<<"wrong input of marks"<<endl;
+        			return;
+			}
+  		}	
+	}
+
+	void Theory::gr_p()
+	{
+		int internalcredit=1;
+
+//		
+        //.......grade for internal marks......
+              
+        if(internalMarks >=45 && internalMarks<=50) {
+            internalgradePoint = 10;
+        } else if (internalMarks >= 40 && internalMarks<45) {
+            internalgradePoint = 9;
+        } else if (internalMarks >= 35 && internalMarks<40) {
+            internalgradePoint = 8;
+        } else if (internalMarks >= 30 &&internalMarks<35) {
+            internalgradePoint = 7;
+        } else if (internalMarks >= 25 && internalMarks<30){
+            internalgradePoint = 6;
+        } else if (internalMarks >= 20 &&internalMarks<25) {
+            internalgradePoint = 5;
+        }else if (internalMarks >=15 && internalMarks<20) {
+        	internalgradePoint = 4;
+    	}
+         else {
+            internalgradePoint = 0;
+        }
+    
+              internalcreditspoint = internalcredit*internalgradePoint; 
+              	
+	}
+	void Practical::tgr_p()
+	{
+			int theorycredit=3;
+		
+        if(endSemesterMarks >=90) {
+            theorygradePoint = 10;
+        } else if (endSemesterMarks >= 80 && endSemesterMarks<90) {
+            theorygradePoint = 9;
+        } else if (endSemesterMarks >=70 && endSemesterMarks<80) {
+            theorygradePoint = 8;
+        } else if (endSemesterMarks >= 60 && endSemesterMarks<70) {
+            theorygradePoint = 7;
+        } else if (endSemesterMarks >=50 &&endSemesterMarks<60){
+            theorygradePoint = 6;
+        } else if (endSemesterMarks >=45 && endSemesterMarks<50) {
+            theorygradePoint = 5;
+        }
+        	else if (endSemesterMarks >=40 && endSemesterMarks<45) {
+        	theorygradePoint = 4;
+    	   }
+         else {
+            theorygradePoint = 0;
+        }
+        	theorycreditspoint = theorycredit*theorygradePoint;            //it is for theory marks...
+        	Marks= internalcreditspoint + theorycreditspoint;
+        			 
+		
+	}
+ 	
+ 	void Average::calc_cgpa()
+	 {
+	 		 float cgpa=Marks/4;
+		cout<<"CGPA:"<<cgpa;
+	  } 
+
+	int main(){
+		Average a;
+		a.InputMarks();
+		a.gr_p();
+		a.tgr_p();
+		a.calc_cgpa();
+		
+		return 0;
+	};
